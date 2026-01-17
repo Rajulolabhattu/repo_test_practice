@@ -39,4 +39,6 @@ jobs:
               with:
                   node-version: '20'
             - name: Build project
-              run: npm run build
+              run: |
+                    npm install
+                    npm run build
