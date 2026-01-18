@@ -17,6 +17,8 @@ jobs:
         run: echo "Deploying..."
   upload-artifact:
     runs-on: ubuntu-latest
+    outputs:
+      file-names: ${{ steps.publish_new.outputs.file-names }}
     needs: build
     steps:
       - name: Get code
@@ -25,6 +27,9 @@ jobs:
         run: npm ci
       - name: Build code
         run: npm run build
+      - name: publish output
+        id: publish_new
+        run: find ./dist/**/*.js -type f -exec echo "filename={}" ';'
       - name: Upload build artifact
         uses: actions/upload-artifact@v6
         with:
