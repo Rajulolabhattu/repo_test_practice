@@ -17,7 +17,7 @@ jobs:
         run: npm run build
       - name: publish output
         id: publish_new
-        run: find dist/**/*.js -type f -execdir echo "filename={}" ';'
+        run: find dist/**/*.js -type f -execdir sh -c 'echo "filename=${1#./}"' _ {} \;
       - name: Upload build artifact
         uses: actions/upload-artifact@v6
         with:
