@@ -1,8 +1,14 @@
 name: Deployment Exercise 1
 on:
   pull_request:
+    paths:
+      - '**/*.yml'
     branches:
       - main
+    types:
+      - opened
+      - synchronize
+      - reopened
 jobs:
   test:
     runs-on: ubuntu-latest
